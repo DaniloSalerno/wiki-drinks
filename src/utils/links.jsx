@@ -20,7 +20,7 @@ const links = [
     icon: <RiTeamFill className="nav-icon" />,
   },
   {
-    url: "/contattaci",
+    url: "/contact",
     text: "contattaci",
     icon: <AiFillMessage className="nav-icon" />,
   },
@@ -64,7 +64,7 @@ const SocialComponent = ({ classSocial }) => {
       {socialLink.map((link) => {
         return (
           <li key={link.url} className="nav-item">
-            <a href={link.url} alt={link.url} className="nav-link">
+            <a href={link.url} alt={link.url} className="nav-link" target="_blank">
               {link.icon}
             </a>
           </li>
