@@ -6,7 +6,10 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-    const { data } = useFetch(`s=negroni`);
+
+    const [query, setQuery] = useState('negroni')
+
+    const { isLoading, data, isError, count } = useFetch(`s=${query}`);
 
 
     const openSidebar = () => {
@@ -17,10 +20,20 @@ const AppProvider = ({ children }) => {
         setIsSidebarOpen(false)
     }
 
+    const searchCocktail = (input) => {
+        setQuery(input)
+    }
+
     return <AppContext.Provider value={{
         isSidebarOpen,
         openSidebar,
-        closeSidebar
+        closeSidebar,
+        query,
+        isLoading,
+        data,
+        isError,
+        count,
+        searchCocktail
     }}>{children}</AppContext.Provider>
 }
 

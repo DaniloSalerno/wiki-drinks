@@ -4,8 +4,20 @@ import animationData from '../assets/animation/drink-animation.json'
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
+import { useGlobalContext } from "../context";
+import ErrorMessage from "../components/ErrorMessage";
+import Cocktails from "../components/Cocktails";
+import Loading from "../components/Loading";
+
 const HomeScreen = () => {
-  const [input, setInput] = useState('negroni');
+
+  const { query, isLoading, data, isError, count, searchCocktail } = useGlobalContext()
+  const [input, setInput] = useState(query);
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    searchCocktail(input)
+  }
 
   return <>
     <Hero>
@@ -61,7 +73,7 @@ const HomeScreen = () => {
 
         <div className="form-container">
 
-          <form action="">
+          <form action="##" onSubmit={handleSubmit}>
 
             <label htmlFor="drink">
               <h4>Cerca il tuo Drink</h4>
@@ -69,7 +81,7 @@ const HomeScreen = () => {
 
             <div className="input-search">
 
-              <input type="text" id="drink" className="input" placeholder={input} value={input} onChange={(e) => setInput(e.target.value)} />
+              <input type="text" id="drink" className="input" placeholder={query} value={input} onChange={(e) => setInput(e.target.value)} />
 
               <button type="submit" className="btn icon-btn">
                 <FaSearch className="icon" />
@@ -84,11 +96,19 @@ const HomeScreen = () => {
         {/* /.form-container */}
 
         <p className="result">
-          3 risultati
+          {count} risultati
         </p>
 
       </div>
       {/* /.search-bar */}
+
+      {
+        !isLoading && isError ? (
+          <ErrorMessage>Nessun cocktail trovato</ErrorMessage>
+        ) : (
+          !isLoading && !isError ? <Cocktails data={data.drinks} /> : <Loading />
+        )
+      }
 
     </section >
   </>;
