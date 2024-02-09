@@ -1,10 +1,13 @@
 import { useState, useContext, createContext } from "react";
+import useFetch from './useFetch'
 
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+    const { data } = useFetch(`s=negroni`);
+
 
     const openSidebar = () => {
         setIsSidebarOpen(true)
