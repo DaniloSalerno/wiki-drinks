@@ -12,6 +12,8 @@ import Loading from "../components/Loading";
 const HomeScreen = () => {
 
   const { query, isLoading, data, isError, count, searchCocktail } = useGlobalContext()
+
+  console.log(data);
   const [input, setInput] = useState(query);
 
   const handleSubmit = (e) => {

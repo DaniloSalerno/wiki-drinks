@@ -3,8 +3,59 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { HiClipboardList } from "react-icons/hi";
 
-const Cocktail = () => {
-  return <Wrapper>Cocktail</Wrapper>;
+const Cocktail = ({ strDrinkThumb: img, idDrink: id, strDrink: name }) => {
+
+  const [show, setShow] = useState(false);
+
+  const showInfo = () => {
+    setShow(true)
+  }
+
+  const hideInfo = () => {
+    setShow(false)
+  }
+
+  return <Wrapper onMouseEnter={showInfo} onMouseLeave={hideInfo}>
+    <div className="img"
+      style={{
+        background: `url(${img})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat'
+      }}
+    ></div>
+
+    <div className={show ? 'card-text container show-info' : 'card-text container'}>
+      <h5>
+        {name}
+      </h5>
+
+      <div>
+        <div className="see-more-btn brand-color">
+          <h5>
+            Ricetta
+            <HiClipboardList className="icon" />
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    <div className="container card-text-sm">
+      <h5>
+        {name}
+      </h5>
+
+      <div>
+        <div className="see-more-btn brand-color">
+          <h5>
+            Ricetta
+            <HiClipboardList className="icon" />
+          </h5>
+        </div>
+      </div>
+    </div>
+
+  </Wrapper >;
 };
 
 const Wrapper = styled.article`

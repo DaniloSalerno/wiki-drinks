@@ -13,14 +13,13 @@ const useFetch = (query, type = false) => {
 
     useEffect(() => {
         setIsError(false)
-        setIsLoading(false)
+        setIsLoading(true)
 
         axios
             .get(`${url}${query}`)
             .then(response => {
                 setData(response.data)
                 setCount(response.data.drinks.length)
-                console.log(response);
             })
             .catch(err => {
                 setIsError(true)
@@ -28,6 +27,7 @@ const useFetch = (query, type = false) => {
             })
 
         setIsLoading(false)
+
     }, [url, query])
 
     return { isLoading, data, isError, count };
