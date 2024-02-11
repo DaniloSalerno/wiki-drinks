@@ -11,7 +11,7 @@ import Loading from "../components/Loading";
 
 const HomeScreen = () => {
 
-  const { query, isLoading, data, isError, count, searchCocktail } = useGlobalContext()
+  const { query, isLoading, data, isError, count, searchCocktail, deleteScrollPosition, scrollPosition } = useGlobalContext()
 
   console.log(data);
   const [input, setInput] = useState(query);
@@ -20,6 +20,13 @@ const HomeScreen = () => {
     e.preventDefault()
     searchCocktail(input)
   }
+
+  useEffect(() => {
+    if (scrollPosition) {
+      window.scrollTo(0, scrollPosition)
+      deleteScrollPosition()
+    }
+  }, [])
 
   return <>
     <Hero>
