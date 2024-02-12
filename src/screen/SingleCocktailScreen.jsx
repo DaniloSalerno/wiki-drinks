@@ -5,10 +5,13 @@ import { IoArrowBackCircleSharp } from "react-icons/io5";
 import useFetch from "../useFetch";
 import Loading from "../components/Loading";
 import ErrorMessage from "../components/ErrorMessage";
+import useTitle from "../useTitle";
 
 const SingleCocktailScreen = () => {
   const { id } = useParams()
   const { isLoading, isError, data } = useFetch(`i=${id}`, true)
+
+  useTitle(data && data.drinks ? data.drinks[0].strDrink : 'Not Found')
 
   if (isLoading) {
     return <Wrapper>

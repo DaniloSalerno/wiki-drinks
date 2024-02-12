@@ -4,8 +4,12 @@ import { valueCards, teamCards } from "../utils/info";
 import image from '../assets/image/about-hero.jpg'
 import teamImg from '../assets/image/team-img.jpg'
 import Card from "../components/Card";
+import useTitle from "../useTitle";
 
 const AboutScreen = () => {
+
+  useTitle('Chi Siamo')
+
   return <>
     <Hero img={image}>
       <section className="about-hero">

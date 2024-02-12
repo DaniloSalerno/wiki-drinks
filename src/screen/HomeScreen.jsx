@@ -8,8 +8,11 @@ import { useGlobalContext } from "../context";
 import ErrorMessage from "../components/ErrorMessage";
 import Cocktails from "../components/Cocktails";
 import Loading from "../components/Loading";
+import useTitle from "../useTitle";
 
 const HomeScreen = () => {
+
+  useTitle('Home')
 
   const { query, isLoading, data, isError, count, searchCocktail, deleteScrollPosition, scrollPosition } = useGlobalContext()
 

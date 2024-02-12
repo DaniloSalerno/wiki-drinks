@@ -1,7 +1,10 @@
 import React from "react";
 import Hero from "../components/Hero";
 import backImage from '../assets/image/Contact-hero.png'
+import useTitle from "../useTitle";
 const ContactScreen = () => {
+
+  useTitle('Contattaci')
   return <>
     <Hero disableOverlay img={backImage}>
       <div className="contact-hero container">
