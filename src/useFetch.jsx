@@ -11,7 +11,7 @@ const useFetch = (query, type = false) => {
     const [count, setCount] = useState(0);
     const [isError, setIsError] = useState(false);
 
-    useEffect(() => {
+    /* useEffect(() => {
         setIsError(false)
         setIsLoading(true)
 
@@ -20,6 +20,7 @@ const useFetch = (query, type = false) => {
             .then(response => {
                 setData(response.data)
                 setCount(response.data.drinks.length)
+                console.log(response.data.drinks);
             })
             .catch(err => {
                 setIsError(true)
@@ -28,7 +29,23 @@ const useFetch = (query, type = false) => {
 
         setIsLoading(false)
 
-    }, [url, query])
+    }, [url, query]) */
+
+    useEffect(() => {
+        (async (query) => {
+            setIsError(false);
+            setIsLoading(true);
+            try {
+                const response = await axios.get(`${url}${query}`);
+                setData(response.data);
+                setCount(response.data.drinks.length);
+            } catch (err) {
+                setIsError(true);
+                setCount(0);
+            }
+            setIsLoading(false);
+        })(query);
+    }, [query, url]);
 
     return { isLoading, data, isError, count };
 };
